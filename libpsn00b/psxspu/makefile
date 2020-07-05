@@ -26,7 +26,7 @@ build/%.o: %.c
 	
 build/%.o: %.s
 	@mkdir -p $(dir $@)
-	$(AS) $(AFLAGS) $(INCLUDE) $< -o $@
+	$(AS) $(AFLAGS) $(AS_INCLUDE) $< -o $@
 
 clean:
 	rm -Rf build $(TARGET)

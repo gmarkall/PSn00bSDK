@@ -10,8 +10,6 @@ CFILES	= $(notdir $(wildcard ./*.c))
 AFILES	= $(notdir $(wildcard ./*.s))
 OFILES	= $(addprefix build/,$(CFILES:.c=.o) $(AFILES:.s=.o))
 
-INCLUDE = -I../include
-
 CFLAGS	= -g -msoft-float -fno-builtin -fdata-sections -ffunction-sections -Wa,--strip-local-absolute 
 AFLAGS	= -g -msoft-float -Wa,--strip-local-absolute
 
