@@ -11,3 +11,7 @@ scrap
 *.qlp
 *.iso
 *.rom
+tools/lzpack/lzpack
+tools/smxlink/smxlink
+tools/util/elf2x
+
