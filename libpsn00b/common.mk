@@ -2,7 +2,7 @@
 # You may need to modify these values to match with your toolchain setup.
 
 # Toolchain prefix
-PREFIX		= mipsel-unknown-elf-
+PREFIX		= mipsel-psx-elf-
 
 # Include directories
 INCLUDE	 	= -I../include -Wa,-I,../include
