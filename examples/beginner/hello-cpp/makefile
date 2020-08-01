@@ -20,7 +20,7 @@ LIBDIRS		+=
 
 # Libraries to link
 LIBS		= -lpsxetc -lpsxgpu -lpsxgte -lpsxspu -lpsxapi -lpsxsys \
-                  -lc -Wl,--start-group -lgcc -lc -lpsxsys -Wl,--end-group
+		  -lstdc++ -lc -Wl,--start-group -lgcc -lc -lpsxsys -Wl,--end-group
 
 # C compiler flags
 CFLAGS		= -g -O2 -fno-builtin -fdata-sections -ffunction-sections
@@ -32,17 +32,17 @@ CPPFLAGS	= $(CFLAGS) -fno-exceptions
 AFLAGS		= -g -msoft-float
 
 # Linker flags
-LDFLAGS		= -g -Wl,-gc-sections \
+LDFLAGS		=  -g -Wl,-gc-sections \
 			-Wl,-T,psx.ld -Wl,-Map,main.map
 
 # Toolchain programs
 CC			= $(PREFIX)gcc
 CXX			= $(PREFIX)g++
 AS			= $(PREFIX)as
-LD			= $(PREFIX)gcc
+LD			= $(PREFIX)g++
 
 all: $(OFILES)
-	$(LD) $(LDFLAGS) $(LIBDIRS) $(OFILES) $(LIBS) -o $(TARGET) --verbose
+	$(LD) $(LDFLAGS) $(LIBDIRS) $(OFILES) $(LIBS) -o $(TARGET)
 	elf2x -q $(TARGET)
 	
 build/%.o: %.c
@@ -51,7 +51,7 @@ build/%.o: %.c
 	
 build/%.o: %.cpp
 	@mkdir -p $(dir $@)
-	$(CXX) $(AFLAGS) $(INCLUDE) -c $< -o $@
+	$(CXX) $(CPPFLAGS) $(INCLUDE) -c $< -o $@
 	
 build/%.o: %.s
 	@mkdir -p $(dir $@)
